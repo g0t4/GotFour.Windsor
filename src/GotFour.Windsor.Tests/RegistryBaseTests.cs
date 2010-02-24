@@ -1,9 +1,8 @@
 namespace GotFour.Windsor.Tests
 {
-	using System;
-	using System.Collections.Generic;
+	using Castle.Facilities.Startable;
+	using Castle.MicroKernel;
 	using Castle.MicroKernel.Registration;
-	using Castle.Windsor;
 	using NUnit.Framework;
 
 	[TestFixture]
@@ -141,18 +140,18 @@ namespace GotFour.Windsor.Tests
 		{
 			var registry = new RegistryTest();
 
-			registry.Custom(x=> x.Register(Component.For<IFoo>().ImplementedBy<Foo>()));
+			registry.Custom(x => x.Register(Component.For<IFoo>().ImplementedBy<Foo>()));
 
 			var container = InstallInContainer(registry);
-			Verify<IFoo, Foo>(container);			
+			Verify<IFoo, Foo>(container);
 		}
 
 		[Test]
 		public void Custom_BeforeForRegistration_CustomRegistrationResolves()
 		{
 			var registry = new RegistryTest();
-			
-			registry.Custom(c=> c.AddComponent<IFoo,Foo>());
+
+			registry.Custom(c => c.AddComponent<IFoo, Foo>());
 			registry.For<IFoo>().ImplementedBy<FooBar>();
 
 			var container = InstallInContainer(registry);
@@ -169,6 +168,17 @@ namespace GotFour.Windsor.Tests
 
 			var container = InstallInContainer(registry);
 			Verify<IFoo, FooBar>(container);
+		}
+
+		[Test]
+		public void AddFacility_StartableFacility_IsAddedToContainer()
+		{
+			var registry = new RegistryTest();
+
+			registry.AddFacility<StartableFacility>();
+
+			var container = InstallInContainer(registry);
+			Expect(container.Kernel.GetFacilities(), Has.Some.TypeOf<StartableFacility>());
 		}
 	}
 

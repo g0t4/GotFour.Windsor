@@ -1,7 +1,6 @@
 namespace GotFour.Windsor.Tests
 {
 	using Castle.Facilities.Startable;
-	using Castle.MicroKernel;
 	using Castle.MicroKernel.Registration;
 	using NUnit.Framework;
 
@@ -91,7 +90,8 @@ namespace GotFour.Windsor.Tests
 
 			registry.FromAssemblyNamed("GotFour.Windsor.Tests").BasedOn<IFoo>().WithService.FirstInterface();
 
-			VerifyAll(registry);
+			var container = InstallInContainer(registry);
+			VerifyAll(container);
 		}
 
 		[Test]
@@ -101,7 +101,8 @@ namespace GotFour.Windsor.Tests
 
 			registry.FromAssembly(this.GetType().Assembly).BasedOn<IFoo>().WithService.FirstInterface();
 
-			VerifyAll(registry);
+			var container = InstallInContainer(registry);
+			VerifyAll(container);
 		}
 
 		[Test]
@@ -111,7 +112,8 @@ namespace GotFour.Windsor.Tests
 
 			registry.FromAssemblyContaining<IFoo>().BasedOn<IFoo>();
 
-			VerifyAll(registry);
+			var container = InstallInContainer(registry);
+			VerifyAll(container);
 		}
 
 		[Test]
@@ -121,7 +123,8 @@ namespace GotFour.Windsor.Tests
 
 			registry.FromAssemblyContaining(typeof (IFoo)).BasedOn<IFoo>();
 
-			VerifyAll(registry);
+			var container = InstallInContainer(registry);
+			VerifyAll(container);
 		}
 
 		[Test]

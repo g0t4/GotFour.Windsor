@@ -11,9 +11,8 @@ namespace GotFour.Windsor.Tests
 			Expect(service, Is.Not.Null.And.TypeOf<T>());
 		}
 
-		protected void VerifyAll(IWindsorInstaller registry)
+		protected void VerifyAll(IWindsorContainer container)
 		{
-			var container = InstallInContainer(registry);
 			var services = container.ResolveAll<IFoo>();
 			Expect(services, Has.Some.TypeOf<Foo>());
 			Expect(services, Has.Some.TypeOf<FooBar>());

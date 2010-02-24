@@ -7,6 +7,9 @@ namespace GotFour.Windsor.Tests
 	{
 		public SampleRegistry()
 		{
+			// Register a singleton
+			For<IFoo>().ImplementedBy<Foo>().LifeStyle.Singleton(); // Extension methods to call property.
+
 			// Register a single item
 			For<IFoo>().ImplementedBy<Foo>();
 			For(typeof (IFoo)).ImplementedBy<Foo>();
@@ -39,6 +42,14 @@ namespace GotFour.Windsor.Tests
 		{
 			// Same as scanning above in SampleRegistry but much cleaner!
 			ScanMyAssemblyFor<IFoo>();
+
+			// Scan for all services of the pattern Service : IService
+			ScanMyAssembly(Conventions.FirstInterfaceIsIName);
+
+			// Scan for all services of the pattern Whatever : IService (register with first interface)
+			ScanMyAssembly(Conventions.FirstInterface);
+
+			// Next we could use some attributes to discover services, to register imports / exports :)
 		}
 	}
 }

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedRegistryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryBase.cs" />
   </ItemGroup>

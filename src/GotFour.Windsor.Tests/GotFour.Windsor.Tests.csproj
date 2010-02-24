@@ -65,8 +65,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedRegistryBaseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryBaseTests.cs" />
+    <Compile Include="RegistryTestFixureBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GotFour.Windsor\GotFour.Windsor.csproj">

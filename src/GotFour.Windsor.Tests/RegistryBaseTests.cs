@@ -1,10 +1,13 @@
 namespace GotFour.Windsor.Tests
 {
+	using System;
+	using System.Collections.Generic;
+	using Castle.MicroKernel.Registration;
 	using Castle.Windsor;
 	using NUnit.Framework;
 
 	[TestFixture]
-	public class RegistryBaseTests : AssertionHelper
+	public class RegistryBaseTests : RegistryTestFixureBase
 	{
 		[Test]
 		public void For_GenericEntry_AddsRegistration()
@@ -27,12 +30,6 @@ namespace GotFour.Windsor.Tests
 			var container = InstallInContainer(registry);
 			Verify<IFoo, Foo>(container);
 			Verify<Foo, Foo>(container);
-		}
-
-		private void Verify<S, T>(IWindsorContainer container)
-		{
-			var service = container.Resolve<S>();
-			Expect(service, Is.Not.Null.And.TypeOf<T>());
 		}
 
 		[Test]
@@ -98,17 +95,6 @@ namespace GotFour.Windsor.Tests
 			VerifyAll(registry);
 		}
 
-		private void VerifyAll(RegistryTest registry)
-		{
-			var container = InstallInContainer(registry);
-			var services = container.ResolveAll<IFoo>();
-			Expect(services, Has.Some.TypeOf<Foo>());
-			Expect(services, Has.Some.TypeOf<FooBar>());
-			Expect(services, Has.Some.TypeOf<FooBar2>());
-			Expect(services, Has.Some.TypeOf<FooBar3>());
-			Expect(services, Has.Some.TypeOf<FooBar4>());
-		}
-
 		[Test]
 		public void FromAssembly_TestAssembly_AddsRegistration()
 		{
@@ -139,11 +125,50 @@ namespace GotFour.Windsor.Tests
 			VerifyAll(registry);
 		}
 
-		private static WindsorContainer InstallInContainer(IWindsorInstaller registry)
+		[Test]
+		public void AddComponent_FooForIFoo_Resolves()
 		{
-			var container = new WindsorContainer();
-			container.Install(registry);
-			return container;
+			var registry = new RegistryTest();
+
+			registry.AddComponent<IFoo, Foo>();
+
+			var container = InstallInContainer(registry);
+			Verify<IFoo, Foo>(container);
+		}
+
+		[Test]
+		public void Custom_ContainerRegisterFooForIFoo_Resolves()
+		{
+			var registry = new RegistryTest();
+
+			registry.Custom(x=> x.Register(Component.For<IFoo>().ImplementedBy<Foo>()));
+
+			var container = InstallInContainer(registry);
+			Verify<IFoo, Foo>(container);			
+		}
+
+		[Test]
+		public void Custom_BeforeForRegistration_CustomRegistrationResolves()
+		{
+			var registry = new RegistryTest();
+			
+			registry.Custom(c=> c.AddComponent<IFoo,Foo>());
+			registry.For<IFoo>().ImplementedBy<FooBar>();
+
+			var container = InstallInContainer(registry);
+			Verify<IFoo, Foo>(container);
+		}
+
+		[Test]
+		public void For_BeforeCustomRegistration_ForRegistrationResolves()
+		{
+			var registry = new RegistryTest();
+
+			registry.For<IFoo>().ImplementedBy<FooBar>();
+			registry.Custom(c => c.AddComponent<IFoo, Foo>());
+
+			var container = InstallInContainer(registry);
+			Verify<IFoo, FooBar>(container);
 		}
 	}
 

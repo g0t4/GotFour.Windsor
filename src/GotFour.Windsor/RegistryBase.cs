@@ -33,42 +33,42 @@ namespace GotFour.Windsor
 			}
 		}
 
-		public virtual ComponentRegistration<S> For<S>()
+		public ComponentRegistration<S> For<S>()
 		{
 			var registration = Component.For<S>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public virtual ComponentRegistration<S> For<S, F>()
+		public ComponentRegistration<S> For<S, F>()
 		{
 			var registration = Component.For<S, F>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public virtual ComponentRegistration<S> For<S, F1, F2>()
+		public ComponentRegistration<S> For<S, F1, F2>()
 		{
 			var registration = Component.For<S, F1, F2>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public virtual ComponentRegistration<S> For<S, F1, F2, F3>()
+		public ComponentRegistration<S> For<S, F1, F2, F3>()
 		{
 			var registration = Component.For<S, F1, F2, F3>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public virtual ComponentRegistration<S> For<S, F1, F2, F3, F4>()
+		public ComponentRegistration<S> For<S, F1, F2, F3, F4>()
 		{
 			var registration = Component.For<S, F1, F2, F3, F4>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public virtual ComponentRegistration For(params Type[] types)
+		public ComponentRegistration For(params Type[] types)
 		{
 			var registration = Component.For(types);
 			Steps.Add(registration);
@@ -113,6 +113,11 @@ namespace GotFour.Windsor
 		public void Custom(Action<IWindsorContainer> customContainerAction)
 		{
 			Steps.Add(customContainerAction);
+		}
+
+		public void AddFacility<T>() where T : IFacility, new()
+		{
+			Custom(c => c.AddFacility<T>());
 		}
 	}
 }

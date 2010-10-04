@@ -46,9 +46,6 @@ namespace GotFour.Windsor.Tests
 			// Scan for all services of the pattern Service : IService
 			ScanMyAssembly(Conventions.FirstInterfaceIsIName);
 
-			// Scan for all services of the pattern Whatever : IService (register with first interface)
-			ScanMyAssembly(Conventions.FirstInterface);
-
 			// Next we could use some attributes to discover services, to register imports / exports :)
 		}
 	}

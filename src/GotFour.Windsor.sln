@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GotFour.Windsor", "GotFour.Windsor\GotFour.Windsor.csproj", "{D4D1A16C-B25A-4225-A14C-018C829AD670}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GotFour.Windsor.Tests", "GotFour.Windsor.Tests\GotFour.Windsor.Tests.csproj", "{2C4EED90-9567-4AA5-9171-10E09E4C59AB}"

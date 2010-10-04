@@ -35,6 +35,7 @@ namespace GotFour.Windsor
 		private static bool IsConcreteWithInterface(Type type)
 		{
 			return type.IsConcrete()
+					&& !type.IsGenericType
 			       && type.HasInterface();
 		}
 	}

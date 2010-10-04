@@ -6,11 +6,22 @@ namespace GotFour.Windsor.Tests
 	public class ExtendedRegistryBaseTests : RegistryTestFixureBase
 	{
 		[Test]
-		public void ScanMyAssemblyFor_WithIFoo_ResolvesAll()
+		public void ScanMyAssemblyFor_WithGenericParameterOfIFoo_ResolvesAll()
 		{
 			var extendedRegistry = new ExtendedRegistryTest();
 
 			extendedRegistry.ScanMyAssemblyFor<IFoo>();
+
+			var container = InstallInContainer(extendedRegistry);
+			VerifyAll(container);
+		}
+
+		[Test]
+		public void ScanMyAssemblyFor_WithTypeOfIFoo_ResolvesAll()
+		{
+			var extendedRegistry = new ExtendedRegistryTest();
+
+			extendedRegistry.ScanMyAssemblyFor(typeof(IFoo));
 
 			var container = InstallInContainer(extendedRegistry);
 			VerifyAll(container);

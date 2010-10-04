@@ -1,5 +1,6 @@
 namespace GotFour.Windsor.Tests
 {
+	using Castle.MicroKernel.Registration;
 	using Castle.Windsor;
 	using NUnit.Framework;
 

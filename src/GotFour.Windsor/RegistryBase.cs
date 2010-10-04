@@ -5,6 +5,7 @@ namespace GotFour.Windsor
 	using System.Reflection;
 	using Castle.MicroKernel;
 	using Castle.MicroKernel.Registration;
+	using Castle.MicroKernel.SubSystems.Configuration;
 	using Castle.Windsor;
 
 	public class RegistryBase : IWindsorInstaller

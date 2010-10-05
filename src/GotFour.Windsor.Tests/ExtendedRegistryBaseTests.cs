@@ -39,5 +39,18 @@ namespace GotFour.Windsor.Tests
 			Expect(foos, Has.Some.TypeOf<Foo>());
 			Expect(foos, Has.No.TypeOf<FooBar>());
 		}
+
+		[Test]
+		public void ScanAssemblyContaining_RegisterWithFirstInterface_ResolvesFoo()
+		{
+			var extendedRegistry = new ExtendedRegistryTest();
+
+			extendedRegistry.ScanAssemblyContaining<ExtendedRegistryBaseTests>(Conventions.FirstInterfaceIsIName);
+
+			var container = InstallInContainer(extendedRegistry);
+			var foos = container.ResolveAll<IFoo>();
+			Expect(foos, Has.Some.TypeOf<Foo>());
+			Expect(foos, Has.No.TypeOf<FooBar>());
+		}
 	}
 }

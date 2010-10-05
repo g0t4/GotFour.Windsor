@@ -26,5 +26,12 @@ namespace GotFour.Windsor
 			Steps.Add(registration);
 			return registration;
 		}
+
+		public BasedOnDescriptor ScanAssemblyContaining<T>(Func<Type, BasedOnDescriptor> convention)
+		{
+			var item = convention(typeof(T));
+			Steps.Add(item);
+			return item;
+		}
 	}
 }

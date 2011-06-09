@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>GotFour.Windsor</id>
+    <version>$version$</version>
+    <authors>Wes McClure</authors>
+    <owners>Wes McClure</owners>
+    <licenseUrl>https://github.com/g0t4/GotFour.Windsor</licenseUrl>
+    <projectUrl>https://github.com/g0t4/GotFour.Windsor</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fluent registration and conventions for windsor</description>
+    <tags>Windsor FluentRegistration Conventions</tags>
+    <dependencies>
+      <dependency id="Castle.Windsor" version="2.5" />
+    </dependencies>
+  </metadata>
+</package>

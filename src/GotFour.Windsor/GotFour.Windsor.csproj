@@ -87,6 +87,8 @@
     <Compile Include="ExtendedContainer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Testing\ContainerValidationExtensions.cs" />
+    <Compile Include="Testing\ContainerValidationException.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +112,7 @@
     <None Include="GotFour.Windsor.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

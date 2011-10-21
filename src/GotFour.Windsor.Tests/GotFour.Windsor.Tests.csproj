@@ -88,6 +88,7 @@
     <Compile Include="RegistryBaseTests.cs" />
     <Compile Include="RegistryTestFixureBase.cs" />
     <Compile Include="SampleRegistry.cs" />
+    <Compile Include="Testing\ContainerTestExtensionsTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GotFour.Windsor\GotFour.Windsor.csproj">

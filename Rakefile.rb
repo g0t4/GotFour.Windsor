@@ -4,6 +4,7 @@ require 'albacore'
 $projectSolution = 'src/GotFour.Windsor.sln'
 $artifactsPath = "build"
 $nugetFeedPath = ENV["NuGetDevFeed"]
+$srcPath = "src"
 
 task :teamcity => [:build_release]
 
@@ -15,9 +16,15 @@ msbuild :build_release => [:clean, :dep] do |msb|
   msb.solution = $projectSolution
 end
 
+desc "Clean the repository before a build"
 task :clean do
     puts "Cleaning"
     FileUtils.rm_rf $artifactsPath
+	bins = FileList[File.join($srcPath, "**/bin")].map{|f| File.expand_path(f)}
+	bins.each do |file|
+		sh %Q{rmdir /S /Q "#{file}"}
+		#sh 
+    end
 end
 
 task :nuget => [:build] do

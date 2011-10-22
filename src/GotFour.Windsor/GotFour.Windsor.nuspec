@@ -12,6 +12,7 @@
     <tags>Windsor FluentRegistration Conventions</tags>
     <dependencies>
       <dependency id="Castle.Windsor" version="2.5" />
+      <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
     </dependencies>
   </metadata>
 </package>

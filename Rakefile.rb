@@ -30,12 +30,3 @@ end
 task :nuget => [:build] do
 	sh "nuget pack src\\GotFour.Windsor\\GotFour.Windsor.csproj /OutputDirectory " + $nugetFeedPath
 end
-
-desc "Setup dependencies for nuget packages"
-task :dep do
-	package_folder = File.expand_path('src\\packages')
-    packages = FileList["**/packages.config"].map{|f| File.expand_path(f)}
-	packages.each do |file|
-		sh %Q{nuget install #{file} /OutputDirectory #{package_folder}}
-    end
-end

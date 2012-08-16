@@ -10,27 +10,27 @@ namespace GotFour.Windsor
 			return descriptor.Unless(t => t == typeof (T));
 		}
 
-		public static ComponentRegistration<S> Singleton<S>(this LifestyleGroup<S> group)
+		public static ComponentRegistration<S> Singleton<S>(this LifestyleGroup<S> group) where S : class
 		{
 			return group.Singleton;
 		}
 
-		public static ComponentRegistration<S> Transient<S>(this LifestyleGroup<S> group)
+		public static ComponentRegistration<S> Transient<S>(this LifestyleGroup<S> group) where S : class
 		{
 			return group.Transient;
 		}
 
-		public static ComponentRegistration<S> Pooled<S>(this LifestyleGroup<S> group)
+		public static ComponentRegistration<S> Pooled<S>(this LifestyleGroup<S> group) where S : class
 		{
 			return group.Pooled;
 		}
 
-		public static ComponentRegistration<S> PerThread<S>(this LifestyleGroup<S> group)
+		public static ComponentRegistration<S> PerThread<S>(this LifestyleGroup<S> group) where S : class
 		{
 			return group.PerThread;
 		}
 
-		public static ComponentRegistration<S> PerWebRequest<S>(this LifestyleGroup<S> group)
+		public static ComponentRegistration<S> PerWebRequest<S>(this LifestyleGroup<S> group) where S : class
 		{
 			return group.PerWebRequest;
 		}

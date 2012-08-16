@@ -8,12 +8,12 @@ namespace GotFour.Windsor
 	{
 		public BasedOnDescriptor ScanMyAssemblyFor<T>()
 		{
-			return FromMyAssembly().BasedOn<T>();
+			return ScanMyAssemblyFor(typeof (T));
 		}
 
 		public BasedOnDescriptor ScanMyAssemblyFor(Type type)
 		{
-			return FromMyAssembly().BasedOn(type);
+			return FromMyAssembly().BasedOn(type).WithService.Base();
 		}
 
 		private FromAssemblyDescriptor FromMyAssembly()

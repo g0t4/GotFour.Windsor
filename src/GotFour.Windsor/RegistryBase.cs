@@ -34,35 +34,35 @@ namespace GotFour.Windsor
 			}
 		}
 
-		public ComponentRegistration<S> For<S>()
+		public ComponentRegistration<S> For<S>() where S : class
 		{
 			var registration = Component.For<S>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public ComponentRegistration<S> For<S, F>()
+		public ComponentRegistration<S> For<S, F>() where S : class
 		{
 			var registration = Component.For<S, F>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public ComponentRegistration<S> For<S, F1, F2>()
+		public ComponentRegistration<S> For<S, F1, F2>() where S : class
 		{
 			var registration = Component.For<S, F1, F2>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public ComponentRegistration<S> For<S, F1, F2, F3>()
+		public ComponentRegistration<S> For<S, F1, F2, F3>() where S : class
 		{
 			var registration = Component.For<S, F1, F2, F3>();
 			Steps.Add(registration);
 			return registration;
 		}
 
-		public ComponentRegistration<S> For<S, F1, F2, F3, F4>()
+		public ComponentRegistration<S> For<S, F1, F2, F3, F4>() where S : class
 		{
 			var registration = Component.For<S, F1, F2, F3, F4>();
 			Steps.Add(registration);
@@ -104,7 +104,7 @@ namespace GotFour.Windsor
 			return descriptor;
 		}
 
-		public ComponentRegistration<S> AddComponent<S, T>() where T : S
+		public ComponentRegistration<S> AddComponent<S, T>() where T : S where S : class
 		{
 			var registration = Component.For<S>().ImplementedBy<T>();
 			Steps.Add(registration);

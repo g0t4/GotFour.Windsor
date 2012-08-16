@@ -55,7 +55,11 @@
 		}
 
 		[Test]
-		[ExpectedException(typeof(ContainerValidationException))]
+		[ExpectedException(typeof (ContainerValidationException), ExpectedMessage = @"Registrations pending: 
+Some dependencies of this component could not be statically resolved.
+'GotFour.Windsor.Tests.Testing.ContainerTestExtensionsTesting+Dependent' is waiting for the following dependencies:
+- Service 'GotFour.Windsor.Tests.Testing.ContainerTestExtensionsTesting+Independent' which was not registered.
+")]
 		public void ExpectRegistrationsValid_Missing_ThrowsException()
 		{
 			var container = new WindsorContainer();
@@ -73,7 +77,5 @@
 
 			container.ExpectAllRegistrationsAreValid();
 		}
-
-
 	}
 }

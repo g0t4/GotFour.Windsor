@@ -20,10 +20,10 @@ namespace GotFour.Windsor.Tests
 			Custom(c => c.Register(Component.For<IFoo>().ImplementedBy<Foo>()));
 
 			// Scan for types
-			FromAssemblyContaining<SampleRegistry>().BasedOn<IFoo>();
-			FromAssemblyContaining(typeof (SampleRegistry)).BasedOn<IFoo>();
-			FromAssemblyNamed("GotFour.Windsor.Tests").BasedOn<IFoo>();
-			FromAssembly(typeof (SampleRegistry).Assembly).BasedOn<IFoo>();
+			FromAssemblyContaining<SampleRegistry>().BasedOn<IFoo>().WithService.Base();
+			FromAssemblyContaining(typeof (SampleRegistry)).BasedOn<IFoo>().WithService.Base();
+			FromAssemblyNamed("GotFour.Windsor.Tests").BasedOn<IFoo>().WithService.Base();
+			FromAssembly(typeof (SampleRegistry).Assembly).BasedOn<IFoo>().WithService.Base();
 
 			// Forwarding types
 			For<IFoo, Foo>().ImplementedBy<Foo>();

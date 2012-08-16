@@ -88,7 +88,7 @@ namespace GotFour.Windsor.Tests
 		{
 			var registry = new RegistryTest();
 
-			registry.FromAssemblyNamed("GotFour.Windsor.Tests").BasedOn<IFoo>().WithService.FirstInterface();
+			registry.FromAssemblyNamed("GotFour.Windsor.Tests").BasedOn<IFoo>().WithService.Base();
 
 			var container = InstallInContainer(registry);
 			VerifyAll(container);
@@ -99,7 +99,7 @@ namespace GotFour.Windsor.Tests
 		{
 			var registry = new RegistryTest();
 
-			registry.FromAssembly(this.GetType().Assembly).BasedOn<IFoo>().WithService.FirstInterface();
+			registry.FromAssembly(this.GetType().Assembly).BasedOn<IFoo>().WithService.Base();
 
 			var container = InstallInContainer(registry);
 			VerifyAll(container);
@@ -110,7 +110,7 @@ namespace GotFour.Windsor.Tests
 		{
 			var registry = new RegistryTest();
 
-			registry.FromAssemblyContaining<IFoo>().BasedOn<IFoo>();
+			registry.FromAssemblyContaining<IFoo>().BasedOn<IFoo>().WithService.Base();
 
 			var container = InstallInContainer(registry);
 			VerifyAll(container);
@@ -121,7 +121,7 @@ namespace GotFour.Windsor.Tests
 		{
 			var registry = new RegistryTest();
 
-			registry.FromAssemblyContaining(typeof (IFoo)).BasedOn<IFoo>();
+			registry.FromAssemblyContaining(typeof (IFoo)).BasedOn<IFoo>().WithService.Base();
 
 			var container = InstallInContainer(registry);
 			VerifyAll(container);
@@ -147,30 +147,6 @@ namespace GotFour.Windsor.Tests
 
 			var container = InstallInContainer(registry);
 			Verify<IFoo, Foo>(container);
-		}
-
-		[Test]
-		public void Custom_BeforeForRegistration_CustomRegistrationResolves()
-		{
-			var registry = new RegistryTest();
-
-			registry.Custom(c => c.AddComponent<IFoo, Foo>());
-			registry.For<IFoo>().ImplementedBy<FooBar>();
-
-			var container = InstallInContainer(registry);
-			Verify<IFoo, Foo>(container);
-		}
-
-		[Test]
-		public void For_BeforeCustomRegistration_ForRegistrationResolves()
-		{
-			var registry = new RegistryTest();
-
-			registry.For<IFoo>().ImplementedBy<FooBar>();
-			registry.Custom(c => c.AddComponent<IFoo, Foo>());
-
-			var container = InstallInContainer(registry);
-			Verify<IFoo, FooBar>(container);
 		}
 
 		[Test]

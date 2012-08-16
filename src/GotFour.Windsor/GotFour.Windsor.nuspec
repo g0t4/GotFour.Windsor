@@ -11,7 +11,7 @@
     <description>Fluent registration and conventions for windsor</description>
     <tags>Windsor FluentRegistration Conventions</tags>
     <dependencies>
-      <dependency id="Castle.Windsor" version="2.5" />
+      <dependency id="Castle.Windsor" version="3.1.0" />
       <dependency id="CommonServiceLocator.WindsorAdapter" version="1.0" />
     </dependencies>
   </metadata>
